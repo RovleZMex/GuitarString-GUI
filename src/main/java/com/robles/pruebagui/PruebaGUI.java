@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
 package com.robles.pruebagui;
+
+import javax.swing.JFrame;
 
 /**
  *
@@ -12,6 +9,10 @@ package com.robles.pruebagui;
 public class PruebaGUI {
 
     public static void main(String[] args) {
+        JFrame window = new MainWindow();
+        window.setTitle("Prueba GUI");
+        window.setSize(600,400);
+        window.setVisible(true);
         System.out.println("Hello World!");
     }
 }
