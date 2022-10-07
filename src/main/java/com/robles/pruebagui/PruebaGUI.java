@@ -11,8 +11,9 @@ public class PruebaGUI {
     public static void main(String[] args) {
         JFrame window = new MainWindow();
         window.setTitle("Prueba GUI");
-        window.setSize(600,400);
+        window.setSize(600,500);
         window.setVisible(true);
         System.out.println("Hello World!");
+        System.out.println("Cancelar");
     }
 }
