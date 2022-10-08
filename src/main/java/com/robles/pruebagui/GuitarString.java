@@ -15,13 +15,19 @@ public class GuitarString {
 
 	private final Queue<Double> circularBuffer = new LinkedList<>(); //
 	public final double DECAYCONSTANT = 0.996;
-
+        private double frequency;
+        
+        @Override
+        public String toString(){
+            return String.valueOf(frequency);
+        }
 	// Constructor de la clase
 	public GuitarString(double frequency) {
 		if (frequency <= 0) {
 			throw new IllegalArgumentException("El valor de la frecuencia es invalido, por favor ingrese un numero mayor a 0.");
 		}
 		int bufferSize = (int) Math.round(StdAudio.SAMPLE_RATE / frequency);
+                this.frequency = frequency;
 		if (bufferSize < 2) {
 			throw new IllegalArgumentException("El valor de la frecuencia es muy grande, por favor intente con un numero mas pequeño.");
 		}

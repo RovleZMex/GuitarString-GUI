@@ -4,6 +4,9 @@
  */
 package com.robles.pruebagui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author santiagorobles
@@ -11,6 +14,7 @@ package com.robles.pruebagui;
 public class ControlPanel extends javax.swing.JPanel {
 
     public double frequency1 = 840;
+    List<GuitarString> list1 = new ArrayList<>();
 
     /**
      * Creates new form ControlPanel
@@ -30,22 +34,41 @@ public class ControlPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         tfFrecuencia1 = new javax.swing.JTextField();
-        bSonar = new javax.swing.JButton();
+        bAdd = new javax.swing.JButton();
+        lStatus = new javax.swing.JLabel();
+        bReproduce = new javax.swing.JButton();
+        bErase = new javax.swing.JButton();
 
-        jLabel1.setText("Frecuencia 1");
+        jLabel1.setText("Frequency");
 
         tfFrecuencia1.setColumns(7);
-        tfFrecuencia1.setText("880");
+        tfFrecuencia1.setText("840");
         tfFrecuencia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfFrecuencia1ActionPerformed(evt);
             }
         });
 
-        bSonar.setText("Sonar");
-        bSonar.addActionListener(new java.awt.event.ActionListener() {
+        bAdd.setText("Add String");
+        bAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSonarActionPerformed(evt);
+                bAddActionPerformed(evt);
+            }
+        });
+
+        lStatus.setText("Waiting...");
+
+        bReproduce.setText("Reproduce");
+        bReproduce.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bReproduceActionPerformed(evt);
+            }
+        });
+
+        bErase.setText("Erase Strings");
+        bErase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEraseActionPerformed(evt);
             }
         });
 
@@ -56,23 +79,30 @@ public class ControlPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(bSonar))
+                    .addComponent(tfFrecuencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bAdd)
+                    .addComponent(lStatus)
                     .addComponent(jLabel1)
-                    .addComponent(tfFrecuencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bReproduce)
+                    .addComponent(bErase))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(57, 57, 57)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfFrecuencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(lStatus)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bSonar)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addComponent(bAdd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bReproduce)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bErase)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -83,23 +113,56 @@ public class ControlPanel extends javax.swing.JPanel {
             frequency1 = Double.parseDouble(text);
         } catch (Exception e) {
             tfFrecuencia1.setText("880");
+            frequency1 = 880;
         }
     }//GEN-LAST:event_tfFrecuencia1ActionPerformed
 
-    private void bSonarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSonarActionPerformed
+    private void bAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddActionPerformed
         // TODO add your handling code here:
         GuitarString string = new GuitarString(frequency1);
-        string.pluck();
-        for (int i = 0; i < 100_000; i++) {
-            StdAudio.play(string.sample());
-            string.tic();
+        list1.add(string);
+        lStatus.setText("Added " + frequency1 + " Hz string");
+        System.out.println(list1);
+    }//GEN-LAST:event_bAddActionPerformed
+
+    private void bReproduceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bReproduceActionPerformed
+        // TODO add your handling code here:
+        String frequencies = "";
+        for (GuitarString string : list1) {
+            string.pluck();
+            frequencies = frequencies.concat(string.toString() + " ");
         }
-    }//GEN-LAST:event_bSonarActionPerformed
+        frequencies = frequencies.trim();
+        lStatus.setText("Produced frequencies: " + frequencies.replace(" ", ", "));
+        for (int i = 0; i < 100_000; i++) {
+            double finalSound = 0;
+            for (GuitarString string : list1) {
+                finalSound += string.sample();
+            }
+            StdAudio.play(finalSound);
+            for (GuitarString string : list1) {
+                string.tic();
+            }
+        }
+    }//GEN-LAST:event_bReproduceActionPerformed
+
+    private void bEraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEraseActionPerformed
+        // Erase array of Strings
+        int listSize = list1.size();
+        for(int i = 0; i < listSize ; i++){
+            list1.remove(0);
+        }
+        lStatus.setText("Erased Strings");
+        System.out.println(list1);
+    }//GEN-LAST:event_bEraseActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bSonar;
+    private javax.swing.JButton bAdd;
+    private javax.swing.JButton bErase;
+    private javax.swing.JButton bReproduce;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lStatus;
     private javax.swing.JTextField tfFrecuencia1;
     // End of variables declaration//GEN-END:variables
 }

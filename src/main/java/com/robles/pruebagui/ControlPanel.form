@@ -16,15 +16,15 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="bSonar" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="tfFrecuencia1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="bAdd" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lStatus" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="bReproduce" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="bErase" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -33,13 +33,19 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="tfFrecuencia1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Component id="lStatus" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="bSonar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="219" max="32767" attributes="0"/>
+              <Component id="bAdd" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="bReproduce" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="bErase" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="91" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,24 +53,45 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Frecuencia 1"/>
+        <Property name="text" type="java.lang.String" value="Frequency"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfFrecuencia1">
       <Properties>
         <Property name="columns" type="int" value="7"/>
-        <Property name="text" type="java.lang.String" value="880"/>
+        <Property name="text" type="java.lang.String" value="840"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfFrecuencia1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="bSonar">
+    <Component class="javax.swing.JButton" name="bAdd">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sonar"/>
+        <Property name="text" type="java.lang.String" value="Add String"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSonarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAddActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lStatus">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Waiting..."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="bReproduce">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reproduce"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bReproduceActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="bErase">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Erase Strings"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEraseActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
