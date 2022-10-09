@@ -15,12 +15,17 @@ public class ControlPanel extends javax.swing.JPanel {
 
     public double frequency1 = 840;
     public List<GuitarString> list1 = new ArrayList<>();
+    public CenterPanel centerPanel;
 
     /**
      * Creates new form ControlPanel
      */
     public ControlPanel() {
         initComponents();
+    }
+
+    public void setCenterPanel(CenterPanel p) {
+        centerPanel = p;
     }
 
     /**
@@ -153,11 +158,18 @@ public class ControlPanel extends javax.swing.JPanel {
     private void bEraseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEraseActionPerformed
         // Erase array of Strings
         int listSize = list1.size();
-        for(int i = 0; i < listSize ; i++){
+        for (int i = 0; i < listSize; i++) {
             list1.remove(0);
         }
+        centerPanel.cbDo.setSelected(false);
+        centerPanel.cbRe.setSelected(false);
+        centerPanel.cbMi.setSelected(false);
+        centerPanel.cbFa.setSelected(false);
+        centerPanel.cbSo.setSelected(false);
+        centerPanel.cbLa.setSelected(false);
+        centerPanel.cbSi.setSelected(false);
+        
         lStatus.setText("Erased Strings");
-        System.out.println(list1);
     }//GEN-LAST:event_bEraseActionPerformed
 
 

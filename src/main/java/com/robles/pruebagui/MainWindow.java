@@ -17,6 +17,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         centerPanel.setControlPanel(controlPanel);
+        controlPanel.setCenterPanel(centerPanel);
         this.add(centerPanel, BorderLayout.CENTER);
         this.add(controlPanel, BorderLayout.WEST);
     }
