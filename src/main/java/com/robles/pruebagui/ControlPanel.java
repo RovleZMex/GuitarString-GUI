@@ -14,7 +14,7 @@ import java.util.List;
 public class ControlPanel extends javax.swing.JPanel {
 
     public double frequency1 = 840;
-    List<GuitarString> list1 = new ArrayList<>();
+    public List<GuitarString> list1 = new ArrayList<>();
 
     /**
      * Creates new form ControlPanel
@@ -56,6 +56,7 @@ public class ControlPanel extends javax.swing.JPanel {
             }
         });
 
+        lStatus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lStatus.setText("Waiting...");
 
         bReproduce.setText("Reproduce");
@@ -77,32 +78,36 @@ public class ControlPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfFrecuencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bAdd)
-                    .addComponent(lStatus)
-                    .addComponent(jLabel1)
-                    .addComponent(bReproduce)
-                    .addComponent(bErase))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(tfFrecuencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bAdd)
+                            .addComponent(jLabel1)
+                            .addComponent(bReproduce)
+                            .addComponent(bErase)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(lStatus)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addContainerGap()
+                .addComponent(lStatus)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfFrecuencia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(lStatus)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
                 .addComponent(bAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bReproduce)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bErase)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -122,7 +127,6 @@ public class ControlPanel extends javax.swing.JPanel {
         GuitarString string = new GuitarString(frequency1);
         list1.add(string);
         lStatus.setText("Added " + frequency1 + " Hz string");
-        System.out.println(list1);
     }//GEN-LAST:event_bAddActionPerformed
 
     private void bReproduceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bReproduceActionPerformed
@@ -162,7 +166,7 @@ public class ControlPanel extends javax.swing.JPanel {
     private javax.swing.JButton bErase;
     private javax.swing.JButton bReproduce;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lStatus;
+    public javax.swing.JLabel lStatus;
     private javax.swing.JTextField tfFrecuencia1;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,12 +9,15 @@ import javax.swing.JPanel;
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    public JPanel controlPanel = new ControlPanel();
+    private final ControlPanel controlPanel = new ControlPanel();
+    private final CenterPanel centerPanel = new CenterPanel();
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
+        centerPanel.setControlPanel(controlPanel);
+        this.add(centerPanel, BorderLayout.CENTER);
         this.add(controlPanel, BorderLayout.WEST);
     }
 

@@ -12,7 +12,7 @@ public class PruebaGUI {
     public static void main(String[] args) {
         JFrame window = new MainWindow();
         window.setTitle("Prueba GUI");
-        window.setSize(400,300);
+        window.setSize(500,300);
         window.setLocation(600,350);
         window.setVisible(true);
     }

@@ -15,7 +15,7 @@ public class GuitarString {
 
 	private final Queue<Double> circularBuffer = new LinkedList<>(); //
 	public final double DECAYCONSTANT = 0.996;
-        private double frequency;
+        public double frequency;
         
         @Override
         public String toString(){
